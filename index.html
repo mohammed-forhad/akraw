@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام التقارير اليومية - أكاديمية ٱقرأ وَجَوّد العالمية للقراءات</title>
+    <title>نظام التقارير اليومية - أكاديمية اقرأ وجود العالمية</title>
+    
+    <link rel="icon" type="image/jpeg" href="akadimye.jpeg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -26,7 +28,7 @@
                 </div>
                 <div class="header-content">
                     <h1>نظام التقارير اليومية</h1>
-                    <p class="subtitle">أكاديمية ٱقرأ وَجَوّد العالمية للقراءات <br><span class="header-gold-sub">تحت إشراف الشيخة فاتن يوسف</span></p>
+                    <p class="subtitle">أكاديمية اقرأ وجود العالمية للقراءات العشر للشيخة فاتن يوسف</p>
                 </div>
             </header>
 
@@ -48,7 +50,7 @@
                     <div class="grid-layout">
                         <div class="form-group">
                             <label for="academyName">اسم الأكاديمية <span class="required">*</span></label>
-                            <input type="text" id="academyName" value="أكاديمية ٱقرأ وَجَوّد العالمية للقراءات" required aria-label="اسم الأكاديمية">
+                            <input type="text" id="academyName" value="أكاديمية اقرأ وجود العالمية للقراءات العشر للشيخة فاتن يوسف" required aria-label="اسم الأكاديمية">
                             <span class="error-msg">هذا الحقل مطلوب</span>
                         </div>
                         <div class="form-group">
@@ -169,8 +171,7 @@
                                 <img id="docLogoImg" src="" alt="شعار الأكاديمية" style="display: none;">
                             </div>
                             <div class="doc-title-area">
-                                <h2 id="docAcademyName">أكاديمية ٱقرأ وَجَوّد العالمية للقراءات</h2>
-                                <p class="doc-supervisor">تحت إشراف الشيخة فاتن يوسف</p>
+                                <h2 id="docAcademyName">أكاديمية اقرأ وجود العالمية للقراءات العشر للشيخة فاتن يوسف</h2>
                                 <h3>التقرير اليومي للحلقات القرآنية</h3>
                             </div>
                             <div class="doc-date">
@@ -182,12 +183,6 @@
                         <div class="doc-divider"></div>
 
                         <div class="doc-body">
-                            <div class="doc-quote-box">
-                                <div class="quote-ornament right"></div>
-                                <p class="quote-text">حلقة القرآن مكانٌ تُصلح فيه النفس وتزهر الروح وفي تدارس الآيات يكون الطريق الأقصر إلى السكينة.</p>
-                                <div class="quote-ornament left"></div>
-                            </div>
-
                             <div class="info-row">
                                 <div class="info-box">
                                     <span class="info-label">معلمة الحلقة</span>
@@ -209,24 +204,29 @@
                                     <tr>
                                         <th>البيان</th>
                                         <th>العدد</th>
+                                        <th>النسبة المئوية</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>العدد الكلي للمقيدات</td>
                                         <td id="docTotal" class="bold-num">0</td>
+                                        <td>100%</td>
                                     </tr>
                                     <tr class="success-row">
                                         <td>عدد الحاضرات</td>
                                         <td id="docPresent" class="bold-num">0</td>
+                                        <td id="docPresentRate" dir="ltr" class="bold-num">0%</td>
                                     </tr>
                                     <tr class="danger-row">
                                         <td>عدد الغائبات</td>
                                         <td id="docAbsent" class="bold-num">0</td>
+                                        <td id="docAbsentRate" dir="ltr" class="bold-num">0%</td>
                                     </tr>
                                     <tr>
                                         <td>عدد المستمعات</td>
                                         <td id="docListeners" class="bold-num">0</td>
+                                        <td>-</td>
                                     </tr>
                                 </tbody>
                             </table>
