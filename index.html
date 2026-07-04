@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام التقارير اليومية - أكاديمية اقرأ وجوّد العالمية</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-pattern"></div>
+
+    <div class="app-container">
+        <main class="input-section fade-in" id="inputSection">
+            <header class="app-header">
+                <div class="header-icon">
+                    <i class="fa-solid fa-book-open-reader"></i>
+                </div>
+                <div class="header-content">
+                    <h1>نظام التقارير اليومية</h1>
+                    <p class="subtitle">أكاديمية اقرأ وجوّد العالمية للقرآءات العشر للشيخة فاتن يوسف</p>
+                </div>
+            </header>
+
+            <form id="reportForm" class="report-form" novalidate>
+                <section class="form-card">
+                    <h2 class="card-title"><i class="fa-solid fa-mosque"></i> البيانات الأساسية</h2>
+                    
+                    <div class="form-group logo-upload-group">
+                        <label for="logoUpload">شعار الأكاديمية</label>
+                        <div class="file-upload-wrapper">
+                            <input type="file" id="logoUpload" accept="image/*" aria-label="رفع شعار الأكاديمية">
+                            <div class="upload-placeholder" id="uploadPlaceholder">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>اضغط لرفع الشعار</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-layout">
+                        <div class="form-group">
+                            <label for="academyName">اسم الأكاديمية <span class="required">*</span></label>
+                            <input type="text" id="academyName" value="أكاديمية اقرأ وجوّد العالمية للقرآءات العشر للشيخة فاتن يوسف" required aria-label="اسم الأكاديمية">
+                            <span class="error-msg">هذا الحقل مطلوب</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="teacherName">معلمة الحلقة <span class="required">*</span></label>
+                            <input type="text" id="teacherName" placeholder="اسم المعلمة" required aria-label="معلمة الحلقة">
+                            <span class="error-msg">هذا الحقل مطلوب</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="supervisorName">مشرفة الحلقة <span class="required">*</span></label>
+                            <input type="text" id="supervisorName" placeholder="اسم المشرفة" required aria-label="مشرفة الحلقة">
+                            <span class="error-msg">هذا الحقل مطلوب</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="form-card">
+                    <h2 class="card-title"><i class="fa-solid fa-chart-pie"></i> إحصائيات الحلقة</h2>
+                    
+                    <div class="grid-layout">
+                        <div class="form-group">
+                            <label for="totalStudents">العدد الكلي <span class="required">*</span></label>
+                            <input type="number" id="totalStudents" min="0" placeholder="0" required aria-label="العدد الكلي">
+                            <span class="error-msg">قيمة غير صالحة</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="presentStudents">عدد الحضور <span class="required">*</span></label>
+                            <input type="number" id="presentStudents" min="0" placeholder="0" required aria-label="عدد الحضور">
+                            <span class="error-msg">قيمة غير صالحة</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="absentStudents">عدد الغائبات <span class="required">*</span></label>
+                            <input type="number" id="absentStudents" min="0" placeholder="0" required aria-label="عدد الغائبات">
+                            <span class="error-msg">قيمة غير صالحة</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="listenerStudents">عدد المستمعات <span class="required">*</span></label>
+                            <input type="number" id="listenerStudents" min="0" placeholder="0" required aria-label="عدد المستمعات">
+                            <span class="error-msg">قيمة غير صالحة</span>
+                        </div>
+                    </div>
+
+                    <div class="live-stats" id="liveStats">
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fa-solid fa-user-check"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-label">نسبة الحضور</span>
+                                <span class="stat-value" id="attendanceRate">0%</span>
+                            </div>
+                        </div>
+                        <div class="stat-item danger">
+                            <div class="stat-icon"><i class="fa-solid fa-user-xmark"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-label">نسبة الغياب</span>
+                                <span class="stat-value" id="absenceRate">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="form-card">
+                    <h2 class="card-title"><i class="fa-solid fa-pen-to-square"></i> تفاصيل إضافية</h2>
+                    
+                    <div class="form-group">
+                        <label>هل تمت الحلقة؟ <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="classStatus" value="نعم" checked>
+                                <span class="radio-custom"></span>
+                                نعم، تمت
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="classStatus" value="لا">
+                                <span class="radio-custom"></span>
+                                لا، لم تتم
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width" style="margin-top: 1.5rem;">
+                        <label for="additionalNotes">ملاحظات أو توصيات</label>
+                        <textarea id="additionalNotes" rows="4" placeholder="أضف أي ملاحظات إضافية حول الحلقة هنا..."></textarea>
+                    </div>
+                </section>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary" id="generateBtn">
+                        <i class="fa-solid fa-file-signature"></i> إنشاء التقرير
+                    </button>
+                    <button type="reset" class="btn-reset" id="resetBtn">
+                        <i class="fa-solid fa-rotate-right"></i> إعادة تعيين
+                    </button>
+                </div>
+            </form>
+        </main>
+
+        <main class="preview-section hidden fade-in" id="previewSection">
+            <div class="preview-actions">
+                <button class="btn-secondary" id="backBtn">
+                    <i class="fa-solid fa-arrow-right"></i> تعديل البيانات
+                </button>
+                
+                <button class="btn-share-img" id="shareImageBtn">
+                    <i class="fa-solid fa-share-nodes"></i> مشاركة كصورة (واتساب/تليجرام)
+                </button>
+
+                <button class="btn-primary glow" id="downloadPdfBtn">
+                    <i class="fa-solid fa-download"></i> تحميل (PDF)
+                </button>
+            </div>
+
+            <div class="preview-container">
+                <div class="report-document" id="reportDocument">
+                    <div class="doc-border">
+                        <div class="doc-ornament top"></div>
+
+                        <div class="doc-header">
+                            <div class="doc-logo">
+                                <img id="docLogoImg" src="" alt="شعار الأكاديمية" style="display: none;">
+                            </div>
+                            <div class="doc-title-area">
+                                <h2 id="docAcademyName">أكاديمية اقرأ وجوّد العالمية للقرآءات العشر للشيخة فاتن يوسف</h2>
+                                <h3>التقرير اليومي للحلقات القرآنية</h3>
+                            </div>
+                            <div class="doc-date">
+                                <p><i class="fa-regular fa-calendar gold-text"></i> الميلادي: <span id="docGregorianDate" dir="ltr"></span></p>
+                                <p><i class="fa-solid fa-moon gold-text"></i> الهجري: <span id="docHijriDate" dir="rtl"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="doc-divider"></div>
+
+                        <div class="doc-body">
+                            <div class="doc-quote-box">
+                                <div class="quote-ornament right"></div>
+                                <p class="quote-text">حلقة القرآن مكانٌ تُصلح فيه النفس وتزهر الروح وفي تدارس الآيات يكون الطريق الأقصر إلى السكينة.</p>
+                                <div class="quote-ornament left"></div>
+                            </div>
+
+                            <div class="info-row">
+                                <div class="info-box">
+                                    <span class="info-label">معلمة الحلقة</span>
+                                    <span class="info-value" id="docTeacherName"></span>
+                                </div>
+                                <div class="info-box">
+                                    <span class="info-label">مشرفة الحلقة</span>
+                                    <span class="info-value" id="docSupervisorName"></span>
+                                </div>
+                                <div class="info-box">
+                                    <span class="info-label">حالة الحلقة</span>
+                                    <span class="info-value status-badge" id="docClassStatus"></span>
+                                </div>
+                            </div>
+
+                            <h4 class="section-heading">تفاصيل الحضور والغياب</h4>
+                            <table class="doc-table">
+                                <thead>
+                                    <tr>
+                                        <th>البيان</th>
+                                        <th>العدد</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>العدد الكلي للمقيدات</td>
+                                        <td id="docTotal" class="bold-num">0</td>
+                                    </tr>
+                                    <tr class="success-row">
+                                        <td>عدد الحاضرات</td>
+                                        <td id="docPresent" class="bold-num">0</td>
+                                    </tr>
+                                    <tr class="danger-row">
+                                        <td>عدد الغائبات</td>
+                                        <td id="docAbsent" class="bold-num">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>عدد المستمعات</td>
+                                        <td id="docListeners" class="bold-num">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="doc-notes-section">
+                                <h4 class="section-heading">الملاحظات والتوصيات</h4>
+                                <div class="notes-content" id="docNotes">- لا توجد ملاحظات إضافية -</div>
+                            </div>
+                        </div>
+
+                        <div class="doc-footer">
+                            <div class="signatures">
+                                <div class="sig-box">
+                                    <span>توقيع المعلمة</span>
+                                    <div class="sig-line"></div>
+                                </div>
+                                <div class="sig-box">
+                                    <span>توقيع المشرفة</span>
+                                    <div class="sig-line"></div>
+                                </div>
+                                <div class="sig-box stamp-box">
+                                    <span>الختم والاعتماد</span>
+                                    <div class="sig-line"></div>
+                                </div>
+                            </div>
+                            <p class="system-note">تم استخراج هذا التقرير آلياً عبر نظام التقارير اليومية لأكاديميات القرآن الكريم.</p>
+                        </div>
+                        
+                        <div class="doc-ornament bottom"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
