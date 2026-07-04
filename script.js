@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let logoDataUrl = '';
 
-    // ضبط التاريخ الهجري والميلادي تلقائياً
     const setDates = () => {
         const today = new Date();
         const gregorianOptions = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -34,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     setDates();
 
-    // رفع الشعار وتحويله لـ DataURL
     logoUpload.addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
@@ -144,7 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // استخراج مستند PDF
     document.getElementById('downloadPdfBtn').addEventListener('click', () => {
         const element = document.getElementById('reportDocument');
         const btn = document.getElementById('downloadPdfBtn');
@@ -173,7 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // تحويل التقرير لصورة والمشاركة المباشرة
     document.getElementById('shareImageBtn').addEventListener('click', async () => {
         const element = document.getElementById('reportDocument');
         const btn = document.getElementById('shareImageBtn');
